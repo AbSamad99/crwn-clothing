@@ -1,22 +1,20 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-
-import './collection-preview.styles.scss';
 
 import CollectionItem from '../collection-item/collection-item.component';
+import {CollectionPreviewContainer,PreviewContainer,TitleLink} from './collection-preview.styles';
 
 const CollectionPreview=({title,items,...otherProps})=>(
-    <div className='collection-preview' >
-        <Link to={`${otherProps.path}/${title.toLowerCase()}`} className='title' >{title.toUpperCase()}</Link>
-        <div className='preview' >
+    <CollectionPreviewContainer>
+        <TitleLink to={`${otherProps.path}/${title.toLowerCase()}`}>{title.toUpperCase()}</TitleLink>
+        <PreviewContainer>
             {
                 items.filter((item,index)=>index<4).map((item)=>(
                         <CollectionItem key={item.id} item={item} />
                     )
                 )
             }
-        </div>
-    </div>
+        </PreviewContainer>
+    </CollectionPreviewContainer>
 )
 
 export default CollectionPreview;
